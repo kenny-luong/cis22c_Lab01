@@ -41,20 +41,35 @@ int Currency::getCentNum() {
   return centNum;
 }
 
-Currency Currency::operator+(Currency c) {
-  Currency obj;
-  obj.currNum = currNum + c.currNum;
-  obj.centNum = centNum + c.centNum;
-  if (obj.centNum > 99) {
-    obj.centNum -= 100;
-    obj.currNum += 1;
+
+int Currency::returnMoneyState(int currState, int centState) {
+  if (currState == 1 && (centState == 1 || centState == 2)) {
+    return 1;
+  } else if (currState == 1 && centState == 3) {
+    return 2;
+  } else if (currState == 2 && (centState == 1 || centState == 2)) {
+    return 1;
+  } else if (currState == 2 && centState == 3) {
+    return 3;
+  } else {
+    return 3;
   }
-  return obj;
 }
-// TODO Figure out logic behind losing money
-Currency Currency::operator-(Currency c) {
-  Currency obj;
-  obj.currNum = currNum - c.currNum;
-  obj.centNum = centNum - c.centNum;
-  // Implement logic here
+
+int Currency::subtract(int inWallet, int outWallet) {
+  return inWallet - outWallet;
+}
+
+int Currency::add(int inWallet, int outWalleT) {
+  return inWallet + outWallet;
+}
+
+int Currency::checkState(int inWallet, int outWallet) {
+  if (inWallet > outWallet) {
+    return 1;
+  } else if (inWallet == outWallet) {
+    return 2;
+  } else if (inWallet < outWallet) {
+    return 3;
+  }
 }

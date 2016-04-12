@@ -23,6 +23,10 @@ public:
   int getCentNum();
   Currency operator+(Currency);
   Currency operator-(Currency);
+  int returnMoneyState(int, int);
+  int subtract(int, int);
+  int add(int, int);
+  int checkState(int, int);
 };
 
 #endif
