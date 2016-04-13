@@ -9,7 +9,7 @@ public:
   Dollars();
   Dollars(int, int);
   Dollars operator+(Dollars);
-  Dollars operator-(Dollars);
+  Dollars operator-(const Currency&);
 };
 
 #endif

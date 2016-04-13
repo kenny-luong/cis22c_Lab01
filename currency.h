@@ -21,8 +21,8 @@ public:
   std::string getCentName();
   int getCurrNum();
   int getCentNum();
-  Currency operator+(Currency);
-  Currency operator-(Currency);
+  Currency operator+(const Currency&);
+  Currency operator-(const Currency&);
   int returnMoneyState(int, int);
   int subtract(int, int);
   int add(int, int);

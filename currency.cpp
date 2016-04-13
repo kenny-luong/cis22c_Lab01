@@ -60,7 +60,7 @@ int Currency::subtract(int inWallet, int outWallet) {
   return inWallet - outWallet;
 }
 
-int Currency::add(int inWallet, int outWalleT) {
+int Currency::add(int inWallet, int outWallet) {
   return inWallet + outWallet;
 }
 
@@ -71,5 +71,43 @@ int Currency::checkState(int inWallet, int outWallet) {
     return 2;
   } else if (inWallet < outWallet) {
     return 3;
+  }
+}
+
+Currency Currency::operator+(const Currency& d) {
+  Currency obj;
+  obj.currNum = add(currNum, d.currNum);
+  obj.centNum = add(centNum, d.centNum);
+  if (obj.centNum > 99) {
+    obj.centNum -= 100;
+    obj.currNum += 1;
+  }
+  return obj;
+}
+
+
+Currency Currency::operator-(const Currency& d) {
+  Currency obj;
+  int query = returnMoneyState(checkState(currNum, d.currNum), checkState(centNum, d.centNum));
+  switch(query) {
+    case 1: {
+      obj.currNum = subtract(currNum, d.currNum);
+      obj.centNum = subtract(centNum, d.centNum);
+      return obj;
+    }
+      break;
+    case 2: {
+      obj.currNum = subtract(currNum, d.currNum) - 1;
+      obj.centNum = subtract(centNum, d.centNum) + 100;
+      if (obj.currNum < 0) {
+        obj.currNum = 0;
+      }
+      return obj;
+    }
+      break;
+    case 3: {
+      std::cout << "You do not have enough money." << std::endl;
+    }
+      break;
   }
 }

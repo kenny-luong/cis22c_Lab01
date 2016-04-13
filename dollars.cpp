@@ -24,29 +24,3 @@ Dollars Dollars::operator+(Dollars d) {
   }
   return obj;
 }
-
-Dollars Dollars::operator-(Dollars d) {
-  Dollars obj;
-  int query = returnMoneyState(checkState(currNum, d.currNum), checkState(centNum, d.centNum));
-  switch(query) {
-    case 1: {
-      obj.currNum = subtract(currNum, d.currNum);
-      obj.centNum = subtract(currNum, d.currNum);
-      return obj;
-    }
-      break;
-    case 2: {
-      obj.currNum = subtract(currNum, d.currNum) - 1;
-      obj.centNum = subtract(centNum, d.centNum) + 100;
-      if (obj.currNum < 0) {
-        obj.currNum = 0;
-      }
-      return obj;
-    }
-      break;
-    case 3: {
-      std::cout << "You do not have enough money." << std::endl;
-    }
-      break;
-  }
-}
