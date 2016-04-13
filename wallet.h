@@ -1,7 +1,20 @@
-#include <iostream>
+#ifndef WALLET_H
+#define WALLET_H
 
-template < class CurrencyType >
+#include <vector>
+#include "currency.h"
+
+template <class T>
 class Wallet {
+private:
+  int walletSize;
+  bool isEmpty;
 public:
-  // TODO Add currency stuff...
+  Wallet();
+  ~Wallet();
+  void addCurrency(const Currency&);
+  void isExists();
+  void emptyWallet();
 }
+
+#endif
